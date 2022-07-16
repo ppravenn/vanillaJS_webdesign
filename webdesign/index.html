@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 슬라이더</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="imgOut">
+            <div id="imgs" class="cf">
+                <div class="slide"><img src="./images/dish1.jpg" alt="1"></div>
+                <div class="slide"><img src="./images/dish2.jpg" alt="2"></div>
+                <div class="slide"><img src="./images/dish3.jpg" alt="3"></div>
+                <div class="slide"><img src="./images/dish4.jpg" alt="4"></div>
+                <div class="slide"><img src="./images/dish5.jpg" alt="5"></div>
+            </div>
+        </div>
+
+        <div id="tab" class="cf">
+            <div class="tabs">
+                <p>공지사항</p>
+                <ul class="on">
+                    <li><a href="#">tab11</a></li>
+                    <li><a href="#">tab11</a></li>
+                    <li><a href="#">tab11</a></li>
+                    <li><a href="#">tab11</a></li>
+                    <li><a href="#">tab11</a></li>
+                </ul>
+            </div>
+            <div class="tabs">
+                <p>고민상담</p>
+                <ul>
+                    <li><a href="#">tab22</a></li>
+                    <li><a href="#">tab22</a></li>
+                    <li><a href="#">tab22</a></li>
+                    <li><a href="#">tab22</a></li>
+                    <li><a href="#">tab22</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="poplook"><a href="#popup">팝업 메뉴</a>
+            <div id="popup">
+                <div class="popm">내용입니다.</div>
+                <a href="#" class="popcl">닫기</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var count = 0;
+
+        setInterval(function () {
+            // 이미지를 왼쪽으로 3초마다 이동시킨다
+            var slides = document.querySelector('#imgOut>#imgs')
+            var slideall = document.querySelectorAll('#imgOut>#imgs>.slide')
+            var com=slideall.length
+            console.log(com)
+            pos = count * (-20)
+            if (count < com) {
+                slides.style.transform = `translateX(${pos}%)`
+                count++
+            } else {
+                count = 0
+            }
+        }, 3000)
+
+        var tabCt = document.querySelectorAll('#tab>.tabs')
+
+        for (let i in tabCt) {
+            tabCt[i].addEventListener('click', function () {
+                // var second =tabCt[i].lastElementChild
+                for (let j = 0; j < tabCt.length; j++) {
+                    var second = tabCt[j].lastElementChild
+                    second.classList.remove('on')
+                }
+                this.lastElementChild.classList.add('on')
+            })
+        }
+
+        var poplook = document.querySelector('#poplook')
+        var popup = document.querySelector('.popup')
+        var popcl = document.querySelector('.popcl')
+       
+        poplook.addEventListener('click', function(event){
+            console.log(event)
+        })
+    </script>
+</body>
+
+</html>
